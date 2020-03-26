@@ -311,7 +311,7 @@ const FeedEdit = props => {
 
   return props.editing ? (
     <Fragment>
-      <Backdrop onClick={cancelPostChangeHandler} />
+      <Backdrop onClick={() => cancelPostChangeHandler} />
       <Modal
         title="New Post"
         acceptEnabled={formIsValid}
@@ -325,7 +325,7 @@ const FeedEdit = props => {
             label="Title"
             control="input"
             onChange={postInputChangeHandler}
-            onBlur={inputBlurHandler("title")}
+            onBlur={() => inputBlurHandler("title")}
             valid={postForm["title"].valid}
             touched={postForm["title"].touched}
             value={postForm["title"].value}
@@ -335,7 +335,7 @@ const FeedEdit = props => {
             label="Image"
             control="input"
             onChange={postInputChangeHandler}
-            onBlur={inputBlurHandler("image")}
+            onBlur={() => inputBlurHandler("image")}
             valid={postForm["image"].valid}
             touched={postForm["image"].touched}
           />
@@ -349,7 +349,7 @@ const FeedEdit = props => {
             control="textarea"
             rows="5"
             onChange={postInputChangeHandler}
-            onBlur={inputBlurHandler("content")}
+            onBlur={() => inputBlurHandler("content")}
             valid={postForm["content"].valid}
             touched={postForm["content"].touched}
             value={postForm["content"].value}

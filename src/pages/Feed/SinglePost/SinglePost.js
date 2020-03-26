@@ -66,7 +66,7 @@ const SinglePost = props => {
 
   useEffect(() => {
     const postId = props.match.params.postId;
-    fetch("URL")
+    fetch("http://localhost:8080/feed/post/" + postId)
       .then(res => {
         if (res.status !== 200) {
           throw new Error("Failed to fetch status");
@@ -78,6 +78,7 @@ const SinglePost = props => {
         setAuthor(resData.post.creator.name);
         setDate(new Date(resData.post.createdAt).toLocaleDateString("en-US"));
         setContent(resData.post.content);
+        setImage("http://localhost:8080/" + resData.post.imageUrl );
       })
       .catch(err => {
         console.log(err);
