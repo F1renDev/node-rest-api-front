@@ -295,7 +295,7 @@ const Feed = () => {
         page--;
         setPostPage(page);
       }
-      fetch("http://localhost:8080/feed/posts")
+      fetch("http://localhost:8080/feed/posts?page=" + page)
         .then(res => {
           if (res.status !== 200) {
             throw new Error("Failed to fetch posts.");
@@ -303,7 +303,11 @@ const Feed = () => {
           return res.json();
         })
         .then(resData => {
-          setPosts(resData.posts);
+          setPosts(
+            resData.posts.map(post => {
+              return { ...post, imagePath: post.imageUrl };
+            })
+          );
           setTotalPosts(resData.totalItems);
           setPostsLoading(false);
         })
@@ -360,7 +364,6 @@ const Feed = () => {
 
   const finishEditHandler = postData => {
     setEditLoading(true);
-    // Set up data (with image!)
     const formData = new FormData();
     formData.append("title", postData.title);
     formData.append("content", postData.content);
@@ -368,7 +371,8 @@ const Feed = () => {
     let url = "http://localhost:8080/feed/post";
     let method = "POST";
     if (editPost) {
-      url = "URL";
+      url = "http://localhost:8080/feed/post/" + editPost._id;
+      method = "PUT";
     }
 
     fetch(url, {
@@ -418,7 +422,9 @@ const Feed = () => {
 
   const deletePostHandler = postId => {
     setPostsLoading(true);
-    fetch("URL")
+    fetch("http://localhost:8080/feed/post/" + postId, {
+      method: "DELETE"
+    })
       .then(res => {
         if (res.status !== 200 && res.status !== 201) {
           throw new Error("Deleting a post failed!");
