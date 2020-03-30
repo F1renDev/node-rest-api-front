@@ -17,7 +17,7 @@
 //   state = {
 //     showBackdrop: false,
 //     showMobileNav: false,
-//     isAuth: true,
+//     isAuth: false,
 //     token: null,
 //     userId: null,
 //     authLoading: false,
@@ -242,7 +242,7 @@ import "./App.css";
 const App = props => {
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [showMobileNav, setShowMobileNav] = useState(false);
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(null);
   const [authLoading, setAuthLoading] = useState(false);
@@ -332,7 +332,17 @@ const App = props => {
   const signupHandler = (event, authData) => {
     event.preventDefault();
     setAuthLoading(true);
-    fetch("URL")
+    fetch("http://localhost:8080/auth/signup", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: authData.email.value,
+        password: authData.password.value,
+        name: authData.name.value
+      })
+    })
       .then(res => {
         if (res.status === 422) {
           throw new Error(

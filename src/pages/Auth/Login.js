@@ -178,7 +178,7 @@ const Login = props => {
           type="email"
           control="input"
           onChange={inputChangeHandler}
-          onBlur={inputBlurHandler("email")}
+          onBlur={()=>inputBlurHandler("email")}
           value={loginForm["email"].value}
           valid={loginForm["email"].valid}
           touched={loginForm["email"].touched}
@@ -189,7 +189,7 @@ const Login = props => {
           type="password"
           control="input"
           onChange={inputChangeHandler}
-          onBlur={inputBlurHandler("password")}
+          onBlur={()=>inputBlurHandler("password")}
           value={loginForm["password"].value}
           valid={loginForm["password"].valid}
           touched={loginForm["password"].touched}
