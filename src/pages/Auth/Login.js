@@ -127,9 +127,10 @@ const Login = props => {
       valid: false,
       touched: false,
       validators: [required, length({ min: 5 })]
-    },
-    formIsValid: false
+    }
   });
+  // eslint-disable-next-line
+  const [formIsValid, setFormIsValid] = useState(false);
 
   const inputChangeHandler = (input, value) => {
     let isValid = true;
@@ -149,7 +150,7 @@ const Login = props => {
       formIsValid = formIsValid && updatedForm[inputName].valid;
     }
     setLoginForm(updatedForm);
-    setLoginForm({ ...loginForm, formIsValid: formIsValid });
+    setFormIsValid(formIsValid);
   };
 
   const inputBlurHandler = input => {
@@ -178,7 +179,7 @@ const Login = props => {
           type="email"
           control="input"
           onChange={inputChangeHandler}
-          onBlur={()=>inputBlurHandler("email")}
+          onBlur={() => inputBlurHandler("email")}
           value={loginForm["email"].value}
           valid={loginForm["email"].valid}
           touched={loginForm["email"].touched}
@@ -189,7 +190,7 @@ const Login = props => {
           type="password"
           control="input"
           onChange={inputChangeHandler}
-          onBlur={()=>inputBlurHandler("password")}
+          onBlur={() => inputBlurHandler("password")}
           value={loginForm["password"].value}
           valid={loginForm["password"].valid}
           touched={loginForm["password"].touched}

@@ -145,6 +145,7 @@ const Signup = props => {
       validators: [required]
     }
   });
+  // eslint-disable-next-line
   const [formIsValid, setFormIsValid] = useState(false);
 
   const inputChangeHandler = (input, value) => {
@@ -164,7 +165,6 @@ const Signup = props => {
     let formIsValid = true;
     for (const inputName in updatedForm) {
       formIsValid = formIsValid && updatedForm[inputName].valid;
-      console.log(updatedForm[inputName].valid);
     }
     setSignupForm(updatedForm);
     setFormIsValid(formIsValid);
