@@ -27,7 +27,7 @@
 //   inputChangeHandler = (input, value) => {
 //     this.setState(prevState => {
 //       let isValid = true;
-//       for (const validator of prevState.loginForm[input].validators) {
+//       for (const validator of .loginForm[input].validators) {
 //         isValid = isValid && validator(value);
 //       }
 //       const updatedForm = {
